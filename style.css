@@ -1,0 +1,180 @@
+/* ---------- Design tokens ---------- */
+:root {
+    --bg: #eef2f5;
+    --surface: #ffffff;
+    --ink: #17212b;
+    --muted: #5b6b7a;
+    --line: #d5dde4;
+    --accent: #0f6e72;
+    --accent-dark: #0a5457;
+    --danger: #b3261e;
+    --danger-dark: #8f1d17;
+    --listening: #1b8a4b;
+    --error-bg: #fdecea;
+    --warn-bg: #fff6e0;
+    --ok-bg: #e7f5ec;
+    --idle-bg: #eef2f5;
+    --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+}
+
+.page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 16px 24px;
+}
+
+/* ---------- Header ---------- */
+.header { margin-bottom: 24px; }
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.field { margin-bottom: 18px; }
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+select, textarea {
+    width: 100%;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+select:focus-visible, textarea:focus-visible, .btn:focus-visible {
+    outline: 3px solid rgba(15, 110, 114, 0.4);
+    outline-offset: 2px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 200px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.hint {
+    margin: 6px 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ---------- Buttons ---------- */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.btn {
+    font: inherit;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--accent-dark); }
+
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: var(--danger-dark); }
+
+.btn-secondary { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn-secondary:hover:not(:disabled) { background: var(--bg); }
+
+/* ---------- Status ---------- */
+.status {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
+
+.dot {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.status-idle      { background: var(--idle-bg); }
+.status-listening { background: var(--ok-bg); }
+.status-listening .dot { background: var(--listening); animation: pulse 1.4s ease-in-out infinite; }
+.status-warning   { background: var(--warn-bg); }
+.status-warning .dot { background: #c98a00; }
+.status-error     { background: var(--error-bg); color: var(--danger-dark); }
+.status-error .dot { background: var(--danger); }
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1);   opacity: 1; }
+    50%      { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* ---------- How it works ---------- */
+.how h2 { margin: 0 0 10px; font-size: 1.2rem; }
+.how ol { margin: 0 0 12px; padding-left: 20px; }
+.how li { margin-bottom: 4px; }
+.note { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+.footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+    h1 { font-size: 1.5rem; }
+    .card { padding: 16px; }
+    .btn { flex: 1 1 calc(50% - 10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .status-listening .dot { animation: none; }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Speech Recognition Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page">
+
+        <header class="header">
+            <h1>Automatic Speech Recognition Tool</h1>
+            <p class="subtitle">
+                Speak into your microphone and watch your words turn into text in real time.
+            </p>
+        </header>
+
+        <section class="card" aria-label="Speech recognition controls">
+
+            <div class="field">
+                <label for="language">Speech language</label>
+                <select id="language">
+                    <option value="en-US" selected>English (US) - en-US</option>
+                    <option value="en-GB">English (UK) - en-GB</option>
+                    <option value="en-IN">English (India) - en-IN</option>
+                    <option value="ta-IN">Tamil - ta-IN</option>
+                    <option value="hi-IN">Hindi - hi-IN</option>
+                    <option value="ml-IN">Malayalam - ml-IN</option>
+                    <option value="te-IN">Telugu - te-IN</option>
+                    <option value="kn-IN">Kannada - kn-IN</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button id="startBtn" class="btn btn-primary" type="button">Start Recording</button>
+                <button id="stopBtn" class="btn btn-danger" type="button" disabled>Stop</button>
+                <button id="clearBtn" class="btn btn-secondary" type="button">Clear</button>
+                <button id="copyBtn" class="btn btn-secondary" type="button">Copy</button>
+            </div>
+
+            <div id="status" class="status status-idle" role="status" aria-live="polite">
+                <span id="statusDot" class="dot"></span>
+                <span id="statusText">Ready. Click "Start Recording" to begin.</span>
+            </div>
+
+            <div class="field">
+                <label for="output">Recognized Text</label>
+                <textarea id="output" rows="10"
+                    placeholder="Your recognized speech will appear here..."></textarea>
+                <p class="hint">Words may change slightly while you speak, then settle once a phrase is confirmed. You can also edit the text by hand.</p>
+            </div>
+
+        </section>
+
+        <section class="card how" aria-label="How it works">
+            <h2>How it works</h2>
+            <ol>
+                <li>Your browser asks for permission to use the microphone.</li>
+                <li>The browser's built-in Web Speech API listens and sends the audio to the browser vendor's speech service.</li>
+                <li>Partial results appear instantly while you speak, and final results replace them once a phrase is confirmed.</li>
+                <li>This page keeps listening until you click Stop, and restarts automatically if the browser ends a session.</li>
+            </ol>
+            <p class="note">
+                Works best in Google Chrome or Microsoft Edge, with an internet connection.
+                Firefox does not support this feature.
+            </p>
+        </section>
+
+        <footer class="footer">Built with Flask, HTML, CSS and JavaScript.</footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
